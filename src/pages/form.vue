@@ -1,6 +1,7 @@
 <template>
   <f7-page>
     <f7-navbar title="Form" back-link="Back" sliding></f7-navbar>
+
     <f7-block-title>Form</f7-block-title>
     <f7-list form>
       <f7-list-item>
