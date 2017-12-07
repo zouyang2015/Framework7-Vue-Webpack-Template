@@ -37,7 +37,7 @@
   }
 </script>
 
-<style>
+<style scoped>
   .content-block {
     margin: 10px 0;
     padding: 0 15px;

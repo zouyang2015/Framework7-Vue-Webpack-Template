@@ -1,0 +1,33 @@
+/* detail-navi */
+.detail-navi.content-block {
+    margin: 0;
+}
+.detail-navi.content-block .content-block-inner:before {
+    background: no-repeat;
+}
+.content-block {
+    margin: 10px 0;
+    padding: 0 15px;
+    color: #6d6d72;
+    box-sizing: border-box;
+}
+
+
+.tab-wrapper {
+    display: flex;
+    font-size: 12px;
+}
+
+.tab-item {
+    border-left: 1px solid #333333;
+}
+
+.tab-item:first-child {
+    border: none;
+}
+
+.h2-title {
+    font-size: 10px;
+    font-weight: normal;
+    margin: 0;
+}

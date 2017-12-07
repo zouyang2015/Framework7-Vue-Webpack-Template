@@ -30,7 +30,7 @@
 
 </script>
 
-<style>
+<style scoped>
   .tab-wrapper {
     display: flex;
     font-size: 12px;
