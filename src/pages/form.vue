@@ -89,7 +89,8 @@
 
     <f7-block-title>Radios</f7-block-title>
     <f7-list form>
-      <f7-list-item v-for="n in 3" :key="n" radio name="my-radio" :checked="n === 1" :value="n" :title="'Radio ' + n"></f7-list-item>
+      {{sex}}
+      <f7-list-item v-for="n in 3" :key="n" radio name="my-radio" v-model="sex" :checked="n === 1" :value="n" :title="'Radio ' + n"></f7-list-item>
     </f7-list>
 
     <f7-block-title>Buttons</f7-block-title>
@@ -129,5 +130,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      sex: ''
+    }
+  }
+}
 </script>
