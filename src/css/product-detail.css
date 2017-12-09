@@ -1,156 +1,232 @@
 /* detail-navi */
 .detail-navi.content-block {
-    margin: 0;
+  margin: 0;
 }
+
 .detail-navi.content-block .content-block-inner:before {
-    background: no-repeat;
+  background: no-repeat;
 }
+
 .content-block {
-    margin: 10px 0;
-    padding: 0 15px;
-    color: #6d6d72;
-    box-sizing: border-box;
+  margin: 10px 0;
+  padding: 0 15px;
+  color: #6d6d72;
+  box-sizing: border-box;
 }
 
 /* .page-list */
 .page-list {
-    height: 24px;
-    box-sizing: border-box;
-    overflow: hidden;
+  height: 24px;
+  box-sizing: border-box;
+  overflow: hidden;
 }
+
 .page-list.buttons-row .button:first-child {
-    border: none;
+  border: none;
 }
+
 .page-list .page-list-item {
-    border: none;
-    border-left: 1px solid #e6e6e6;
+  border: none;
+  border-left: 1px solid #e6e6e6;
 }
+
 .page-list .page-list-item.button {
-    font-size: 14px;
-    color: #333333;
-    height: 24px;
-    line-height: 24px;
+  font-size: 14px;
+  color: #333333;
+  height: 24px;
+  line-height: 24px;
 }
+
 .page-list .page-list-item span {
-    padding: 0 0 0 16px;
+  padding: 0 0 0 16px;
 }
+
 .page-list .page-list-item:nth-child(1) span {
-    background: url("../image/ico-profit.jpg") no-repeat left 2px;
-    background-size: 11px 13px;
+  background: url("../image/ico-profit.jpg") no-repeat left 2px;
+  background-size: 11px 13px;
 }
+
 .page-list .page-list-item:nth-child(2) span {
-    background: url("../image/ico-clause.jpg") no-repeat left 2px;
-    background-size: 11px 13px;
+  background: url("../image/ico-clause.jpg") no-repeat left 2px;
+  background-size: 11px 13px;
 }
+
 .page-list .page-list-item:nth-child(3) span {
-    background: url("../image/ico-rule.jpg") no-repeat left 2px;
-    background-size: 11px 13px;
+  background: url("../image/ico-rule.jpg") no-repeat left 2px;
+  background-size: 11px 13px;
 }
 
 /* .h2-title */
 .h2-title {
-    font-size: 12px;
-    font-weight: normal;
-    margin: 0;
-    color: #696969;
-    padding: 10px 0 10px 10px;
+  font-size: 12px;
+  font-weight: normal;
+  margin: 0;
+  color: #696969;
+  padding: 10px 0 10px 10px;
+  border-top: 1px solid #e6e6e6;
 }
+
 /* h3-title */
 .h3-title {
-    flex: 0 0 80px;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-weight: normal;
-    border-right: 1px solid #e6e6e6;
-    text-align: right;
-    padding: 0 20px 0 0;
-    margin: 0;
-    line-height: 18px;
+  flex: 0 0 80px;
+  box-sizing: border-box;
+  font-size: 16px;
+  font-weight: normal;
+  border-right: 1px solid #e6e6e6;
+  text-align: right;
+  padding: 0 20px 0 0;
+  margin: 0;
+  line-height: 18px;
+}
+
+/* h4-title */
+.h4-title {
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+  color: #2b2b2b;
+  padding: 10px 0 10px 10px;
+  border-top: 1px solid #e6e6e6;
+  position: relative;
+}
+.h4-title span {
+  background: url("../image/ico-additional_risk.jpg") no-repeat left;
+  background-size: 14px 14px;
+  padding: 0 0 0 20px;
+}
+.h4-title span.main-risk {
+  background: url("../image/ico-main_risk.jpg") no-repeat left;
+  background-size: 14px 14px;
+}
+.h4-title .ico-close {
+  width: 18px;
+  height: 18px;
+  padding: 5px;
+  box-sizing: border-box;
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  background: url("../image/ico-close.jpg") no-repeat left top;
+  background-size: 18px 18px;
 }
 
 /* input-title */
 .input-title {
-    font-size: 16px;
-    color: #333333;
-    padding: 5px 0 10px 0;
+  font-size: 16px;
+  color: #333333;
+  padding: 5px 0 10px 0;
 }
+
 /* input-info */
 #input-content {
-    width: 90%;
-    border: none;
-    border-radius: 0;
-    background: #ededed;
-    height: 28px;
-    line-height: 28px;
-    font-size: 16px;
-    text-align: center;
+  width: 90%;
+  border: none;
+  border-radius: 0;
+  background: #ededed;
+  height: 28px;
+  line-height: 28px;
+  font-size: 16px;
+  text-align: center;
 }
 
 /* .modal */
 .modal {
-    top: 50%;
-    margin-top: 0;
-    transform: translate3d(0, -70%, 0);
-}
-.modal-button {
-    color: #8982ca;
+  top: 50%;
+  margin-top: 0;
+  transform: translate3d(0, -70%, 0);
 }
 
+.modal-button {
+  color: #8982ca;
+}
 
 /* form-warpper */
 .form-warpper {
-    background: #ffffff;
-    margin: 10px 0;
+  background: #ffffff;
+  margin: 10px 0;
+  overflow: hidden;
 }
+
 .form-warpper .content-block-inner {
-    padding: 0;
+  padding: 0;
 }
+
 .form-warpper .list-block {
-    margin: 0;
+  margin: 0;
 }
+
 .form-warpper .list-block .item-content {
 }
+
 .form-warpper .list-block .item-inner {
-    justify-content: flex-start;
-    min-height: 50px;
-    position: relative;
+  justify-content: flex-start;
+  min-height: 50px;
+  position: relative;
 }
+
 .form-warpper .list-block .sex .item-inner input {
-    flex: 0 0 30px;
-    margin: 0 0 0 20px;
+  flex: 0 0 30px;
+  margin: 0 0 0 20px;
 }
+
 .form-warpper .list-block .age .item-inner .text {
-    width: 100px;
-    height: 16px;
-    background: #9a9a9a;
-    margin: 0 0 0 20px;
+  width: 100px;
+  height: 17px;
+  margin: 0 0 0 26px;
+  line-height: 17px;
+  font-size: 16px;
+}
+.form-warpper .list-block .age .item-inner .input-overlay {
+  position: absolute;
+  left: 106px;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  -webkit-transform: translate3d(0, -50%, 0);
+  width: 100px;
+  height: 16px;
 }
 .form-warpper .list-block .age .item-inner .icon_calendar {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translate3d(0, -50%, 0);
-    border: 1px solid #d0d0d0;
-    padding: 0 5px 1px 5px;
-    border-radius: 4px;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  -webkit-transform: translate3d(0, -50%, 0);
+  border: 1px solid #d0d0d0;
+  padding: 0 5px 1px 5px;
+  border-radius: 4px;
 }
+
 .form-warpper .list-block .age .item-inner .icon_calendar span {
-    background: url("../image/ico-birthday.jpg") no-repeat left top;
-    background-size: 17px 16px;
-    padding: 0 0 0 22px;
-    font-size: 14px;
-    color: #6f6f6f;
+  background: url("../image/ico-birthday.jpg") no-repeat left top;
+  background-size: 17px 16px;
+  padding: 0 0 0 22px;
+  font-size: 14px;
+  color: #6f6f6f;
 }
+
 .form-warpper .list-block .age .item-inner .date {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translate3d(0, -50%, 0);
-    z-index: 1;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+  z-index: 1;
 }
+
 .form-warpper .list-block .age .item-inner input[type="date"] {
-    width: 60px;
-    height: 24px;
-    background: #c1c337;
-    opacity: 0;
+  width: 60px;
+  height: 24px;
+  background: #c1c337;
+  opacity: 0;
+}
+
+/* .swiper-slide */
+.scroll {
+  margin-bottom: 10px;
+}
+.swiper-slide {
+  width: auto;
+  font-size: 12px;
+  color: #888888;
+  background: #f7f7f7;
+  padding: 5px 10px;
 }

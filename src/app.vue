@@ -29,7 +29,8 @@
           <!-- 全推荐列表 -->
           <f7-page>
             <f7-list class="product-list">
-              <f7-list-item link="/product-detail/20/" no-link-class class="product-item" v-for="(item, index) in listAry" :key="index">
+              <f7-list-item :link="`/product-detail/${prodkey}/`" no-link-class class="product-item"
+                            v-for="(item, index) in listAry" :key="index">
                 <div class="icon">
                   <img src="./image/img-product01.jpg" width="60" height="45">
                 </div>
@@ -89,7 +90,7 @@
 </template>
 
 <script>
-  import {postAA} from 'api/fee'
+  import {getBaseInfo} from 'api/api'
 
   export default {
     data() {
@@ -228,14 +229,15 @@
               }
             ]
           }
-        ]
+        ],
+
+        // 跳转用的页面用prodkey
+        prodkey: 'PR171117000000000001'
       }
     },
     created() {
       // 异步请求例子
-//      postAA().then((res) => {
-//        console.log(res)
-//      })
+      getBaseInfo()
     },
     methods: {
       doSomething() {

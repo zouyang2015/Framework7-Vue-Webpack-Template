@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/product-detail/:id/',  // 产品详情
+    path: '/product-detail/:prodkey/',  // 产品详情
     component: require('./pages/product-detail.vue')
   },
   {
