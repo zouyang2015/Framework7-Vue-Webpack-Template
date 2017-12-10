@@ -16,8 +16,14 @@
 
 .app-navi.navbar, .subnavbar, .toolbar {
   background: #ffffff;
+  border-bottom: 1px solid #e6e6e6;
 }
-
+.subnavbar:after {
+  background: none;
+}
+.main-navi-item.btn:after {
+  border: none;
+}
 .app-navi .buttons-row .button:first-child {
   border-radius: 0;
   border: none;
@@ -89,8 +95,11 @@
   display: flex;
   box-sizing: border-box;
   align-items: center;
+  width: 100%;
 }
-
+.product-list.list-block .item-content {
+  width: 100%;
+}
 .product-list .product-item .icon {
   flex: 0 0 60px;
   width: 60px;
@@ -135,8 +144,12 @@
 }
 
 .product-list .product-item .text .desc {
+  flex: 0 1 auto;
   color: #9a9a9a;
   font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .product-list.list-block .item-link .item-inner, .list-block .list-button .item-inner {

@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/product-detail/:prodkey/',  // 产品详情
+    path: '/product-detail/',  // 产品详情
     component: require('./pages/product-detail.vue')
   },
   {
@@ -14,6 +14,14 @@ export default [
   {
     path: '/rule/',  // 投保规则
     component: require('./pages/rule.vue')
+  },
+  {
+    path: '/add-main/', //添加主险
+    component: require('./pages/add-main.vue')
+  },
+  {
+    path: '/add-additional/', //添加附加险
+    component: require('./pages/add-additional.vue')
   },
   {
     path: '/about/',

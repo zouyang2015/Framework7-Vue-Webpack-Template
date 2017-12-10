@@ -57,18 +57,23 @@
       </f7-list>
 
 
+      <f7-buttons class="add-risk">
+        <f7-button class="main" href="/add-main/"><span>添加主险</span></f7-button>
+        <f7-button class="additional" href="/add-additional/"><span>添加附加险</span></f7-button>
+      </f7-buttons>
+
     </div>
-    1<br>1<br>1<br>1<br>1<br>1<br>1<br>1<br>1
   </f7-page>
 </template>
 
 <script>
-  import {getProductDetail, getMainRisk} from 'api/api'
+  import {getProductDetail} from 'api/api'
   import {toast, jsGetAge} from 'common/js/common'
 
   export default {
     data() {
       return {
+        prodkey: '',
         // 产品详情数据
         productDetailAry: [],
         // 产品详情中主险和附加险的数据
@@ -166,12 +171,10 @@
       }
     },
     created() {
-      let params = this.$route.params
-      // 获取产品详情
-      this.getProductDetail(params.prodkey)
+      this.prodkey = JSON.parse(sessionStorage.getItem('prodkey'))
 
-      // 获取主页推荐产品、添加主险
-      getMainRisk()
+      // 获取产品详情
+      this.getProductDetail(this.prodkey)
     },
     computed: {
       // 滚动关键字
@@ -183,6 +186,7 @@
       }
     },
     methods: {
+      // 获取产品详情
       getProductDetail(prodkey) {
         getProductDetail(prodkey).then((res) => {
           if (res.status === '0') {
@@ -191,6 +195,7 @@
             // 产品详情中主险和附加险的数据
             this.productList = res.prodlist
 
+            window.sessionStorage.setItem('productDetail', JSON.stringify(res))
             this.normalizeDetailAry()
           }
         })

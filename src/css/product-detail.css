@@ -230,3 +230,35 @@
   background: #f7f7f7;
   padding: 5px 10px;
 }
+
+
+/* .add-risk */
+.add-risk {
+  padding: 10px 0;
+  box-sizing: border-box;
+  min-height: 38px;
+  border-bottom: 1px solid #e6e6e6;
+}
+.add-risk.buttons-row .button {
+  border: none;
+  color: #000000;
+}
+.add-risk.buttons-row .button.active-state {
+  background: none;
+}
+.add-risk.buttons-row .button:first-child {
+  border: none;
+  border-right: 1px solid #e6e6e6;
+}
+.add-risk .main span {
+  background: url("../image/ico-add_main_risk.jpg") no-repeat left;
+  background-size: 22px 22px;
+  padding: 5px 0 5px 30px;
+  line-height: 22px;
+}
+.add-risk .additional span {
+  background: url("../image/ico-add_additional_risk.jpg") no-repeat left;
+  background-size: 22px 22px;
+  padding: 5px 0 5px 30px;
+  line-height: 22px;
+}

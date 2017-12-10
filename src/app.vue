@@ -28,15 +28,15 @@
         <f7-pages>
           <!-- 全推荐列表 -->
           <f7-page>
-            <f7-list class="product-list">
-              <f7-list-item :link="`/product-detail/${prodkey}/`" no-link-class class="product-item"
-                            v-for="(item, index) in listAry" :key="index">
+            <f7-list v-if="listAry && listAry.length" class="product-list">
+              <f7-list-item no-link-class class="product-item"
+                            v-for="(item, index) in listAry" @click="selectItem(item.prodkey)" :key="index">
                 <div class="icon">
-                  <img src="./image/img-product01.jpg" width="60" height="45">
+                  <img v-lazy="item.picurl" width="60" height="45">
                 </div>
                 <div class="text">
-                  <h2 class="name"><span class="left">{{item.title}}</span><span class="hot">热销</span></h2>
-                  <p class="desc">{{item.desc}}</p>
+                  <h2 class="name"><span class="left">{{item.prodname}}</span><span class="hot" v-if="item.ishot === 'Y'">热销</span></h2>
+                  <p class="desc">{{item.prodtags}}</p>
                 </div>
               </f7-list-item>
             </f7-list>
@@ -77,7 +77,7 @@
         <!-- Actions Buttons -->
         <f7-actions-button>转发</f7-actions-button>
         <f7-actions-button>显示在聊天顶部</f7-actions-button>
-        <f7-actions-button @click="doSomething">关于保险产品算费</f7-actions-button>
+        <f7-actions-button>关于保险产品算费</f7-actions-button>
       </f7-actions-group>
       <!-- Another Group -->
       <f7-actions-group>
@@ -90,7 +90,7 @@
 </template>
 
 <script>
-  import {getBaseInfo} from 'api/api'
+  import {getBaseInfo, getMainRisk} from 'api/api'
 
   export default {
     data() {
@@ -98,52 +98,7 @@
         // 右上角按钮打开关闭控制
         openActionVale: false,
         // 默认产品列表
-        listAry: [
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）平安玺越人生（成人版）平安玺越人生（成人版）平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          },
-          {
-            title: '平安玺越人生（成人版）',
-            desc: '平安2018开门红新品'
-          }
-        ],
+        listAry: [],
         // 推荐产品
         recommendAry: [
           {
@@ -230,17 +185,26 @@
             ]
           }
         ],
-
-        // 跳转用的页面用prodkey
-        prodkey: 'PR171117000000000001'
       }
     },
     created() {
       // 异步请求例子
       getBaseInfo()
+
+      this.getMainRisk()
     },
     methods: {
-      doSomething() {
+      // 获取主险
+      getMainRisk() {
+        getMainRisk().then((res) => {
+          if(res.status === '0') {
+            this.listAry = res.prodlist
+          }
+        })
+      },
+      selectItem(prodkey) {
+        this.$f7.mainView.router.load({url: '/product-detail/'})
+        sessionStorage.setItem('prodkey', JSON.stringify(prodkey))
       }
     }
   }

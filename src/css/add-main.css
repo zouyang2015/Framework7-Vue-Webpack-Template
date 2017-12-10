@@ -1,0 +1,43 @@
+/* .navbar */
+.navbar:after {
+  display: none;
+}
+
+/* search-risk */
+.search-risk {
+  background: #ffffff;
+}
+.search-risk:after {
+  /*background: #ffffff;*/
+}
+.search-risk input[type=search] {
+  background-color: #f1f1f1;
+}
+.search-risk.searchbar-active .searchbar-cancel {
+  color: #333333;
+}
+
+/* .choose */
+.choose {
+background: #ffffff;
+}
+
+/* .lists */
+.lists {
+  margin: 0;
+}
+.lists.mt {
+  margin-top: 10px;
+}
+.lists .item-inner span {
+  font-size: 14px;
+}
+.lists .item-inner .icon-check_circle {
+  padding-left: 15px;
+  border-left: 1px solid #dddddd;
+  font-size: 20px;
+  color: #d2d2d2;
+}
+.lists .item-inner.active .icon-check_circle {
+  color: #8279e3;
+}
