@@ -51,7 +51,7 @@
       <template v-if="sumAry && sumAry.length" v-for="(item, index) in sumAry">
         <h4 class="h4-title">
           <span :class="{'main-risk': item.classtype === 'M'}">{{item.prodname}}</span>
-          <i class="ico-close" v-if="typeof item.ishot === 'undefined'"></i>
+          <i class="ico-close" v-if="typeof item.ishot === 'undefined'" @click="removeProduct(item.prodkey, index)"></i>
         </h4>
 
         <f7-swiper class="scroll" :params="{speed:500, slidesPerView: 'auto', spaceBetween: 10}">
@@ -545,6 +545,15 @@
           this.$f7.mainView.router.load({url: `/rule/${this.sumAry[0].prodkey}/${this.sumAry[0].pageid}/`})
         }
         window.sessionStorage.setItem('sumAry', JSON.stringify(this.sumAry))
+      },
+      // 删除产品
+      removeProduct(prodkey,index) {
+        this.sumAry.splice(index, 1)
+        this.mainToDetail = this.mainToDetail.filter((item) => {
+          return item.prodkey !== prodkey
+        })
+        window.sessionStorage.setItem('sumAry', JSON.stringify(this.sumAry))
+        window.sessionStorage.setItem('mainToDetail', JSON.stringify(this.mainToDetail))
       }
     },
     watch: {

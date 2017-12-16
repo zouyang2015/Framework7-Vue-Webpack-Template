@@ -71,7 +71,9 @@
       this.mainToDetail = JSON.parse(sessionStorage.getItem('mainToDetail')) || []
       this.additionalToDetail = JSON.parse(sessionStorage.getItem('additionalToDetail')) || []
       this.saveList = this.mainToDetail || JSON.parse(sessionStorage.getItem('saveList')) || []
-
+      this.saveList.forEach((item) => {
+        this.$set(item, 'checked', true)
+      })
       // 添加主险
       this.getMainRisk()
     },
@@ -168,13 +170,21 @@
           prodlist: []
         })
         this.computedList.forEach((item) => {
+          let obj = {}
+          obj.prodkey = item.prodkey
+          obj.pageid = item.pageid || ''
+          obj.parentprodkey = item.parentprodkey || ''
+          obj.option = 'A'
+          option.prodlist.push(obj)
+        })
+        this.productList.forEach((item) => {
           if (typeof item.checked !== 'undefined') {
             let obj = {}
             obj.prodkey = item.prodkey
             obj.pageid = item.pageid || ''
             obj.parentprodkey = item.parentprodkey || ''
             if (item.checked === true) {
-              obj.option = 'A'
+//              obj.option = 'A'
             } else {
               obj.option = 'D'
               // 记录被删掉的主险，将其附加险也选中一起删掉（处理的是session)
@@ -186,6 +196,7 @@
             option.prodlist.push(obj)
           }
         })
+        console.log(option)
 
         if (option.prodlist.length) {
           this.$f7.showIndicator()
