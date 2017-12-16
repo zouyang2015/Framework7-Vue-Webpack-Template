@@ -96,7 +96,7 @@
 .h4-title span {
   background: url("../image/ico-additional_risk.jpg") no-repeat left;
   background-size: 14px 14px;
-  padding: 0 0 0 20px;
+  padding: 0 20px 0 20px;
 }
 .h4-title span.main-risk {
   background: url("../image/ico-main_risk.jpg") no-repeat left;

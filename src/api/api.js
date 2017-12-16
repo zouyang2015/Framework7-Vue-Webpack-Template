@@ -33,16 +33,7 @@ export function getSearch(option) {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      if (res.status === '0') {
-        return Promise.resolve(res.data)
-      } else {
-        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
-          window.f7.alert('出错了', null)
-        } else {
-          window.f7.alert(res.msg, null)
-        }
-        window.f7.hideIndicator()
-      }
+      return Promise.resolve(res.data)
     })
 }
 
