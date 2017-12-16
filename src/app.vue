@@ -9,9 +9,6 @@
         <f7-navbar v-if="$theme.ios" class="app-navi">
           <f7-nav-left back-link=" " sliding></f7-nav-left>
           <f7-nav-center sliding>保险产品算费</f7-nav-center>
-          <f7-nav-right>
-            <f7-link icon="icon-bars" @click="openActionVale = true"></f7-link>
-          </f7-nav-right>
 
           <f7-subnavbar class="main-navi" sliding>
             <f7-buttons>
@@ -69,23 +66,6 @@
         </f7-pages>
       </f7-view>
     </f7-views>
-
-    <!-- Actions -->
-    <f7-actions id="actions" :opened="openActionVale">
-      <!-- Actions Group -->
-      <f7-actions-group>
-        <!-- Actions Buttons -->
-        <f7-actions-button>转发</f7-actions-button>
-        <f7-actions-button>显示在聊天顶部</f7-actions-button>
-        <f7-actions-button>关于保险产品算费</f7-actions-button>
-      </f7-actions-group>
-      <!-- Another Group -->
-      <f7-actions-group>
-        <!-- Cancel/Close Button -->
-        <f7-actions-button color="red" bold>取消</f7-actions-button>
-      </f7-actions-group>
-    </f7-actions>
-
   </div>
 </template>
 
@@ -188,6 +168,15 @@
       }
     },
     created() {
+      // 清session
+      window.sessionStorage.removeItem('prodkey')
+      window.sessionStorage.removeItem('pageid')
+      window.sessionStorage.removeItem('productDetail')
+      window.sessionStorage.removeItem('detailToAdd')
+      window.sessionStorage.removeItem('mainToDetail')
+      window.sessionStorage.removeItem('additionalToDetail')
+
+
       // 异步请求例子
       getBaseInfo()
 
@@ -202,7 +191,7 @@
           }
         })
       },
-      selectItem(prodkey) {
+      selectItem(prodkey, pageid) {
         this.$f7.mainView.router.load({url: '/product-detail/'})
         sessionStorage.setItem('prodkey', JSON.stringify(prodkey))
       }

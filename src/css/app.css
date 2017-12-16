@@ -1,7 +1,10 @@
 /*.page-content .content-block:first-of-type {*/
 /*margin: -2px 0 0 0;*/
 /*}*/
-
+.preloader-indicator-overlay {
+  background: #000000;
+  opacity: .5;
+}
 /* main-navi */
 .app-navi {
 

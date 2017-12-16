@@ -17,18 +17,43 @@
   color: #333333;
 }
 
-/* .choose */
-.choose {
-background: #ffffff;
+/* .choose-pro */
+.choose-pro {
+  background: #ffffff;
+}
+.choose-pro .accordion-item-toggle {
+  text-align: right;
+  padding: 5px 10px 5px;
+  color: #8279e3;
+}
+.choose-pro .accordion-item-toggle:after {
+  display: inline-block;
+  margin: 0 0 0 10px;
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid #8279e3;
+  border-bottom: 2px solid #8279e3;
+  transform: translate3d(0, -25%, 0) rotate(45deg);
+  -webkit-transform: translate3d(0, -25%, 0) rotate(45deg);
+}
+.choose-pro .accordion-item-expanded .accordion-item-toggle:after {
+  transform: translate3d(0, 25%, 0) rotate(-135deg);
+  -webkit-transform: translate3d(0, 25%, 0) rotate(-135deg);
+}
+.choose-pro .lists .item-inner .icon-check_circle {
+  color: #8279e3;
 }
 
-/* .lists */
+  /* .lists */
 .lists {
   margin: 0;
 }
 .lists.mt {
   margin-top: 10px;
+  margin-bottom: 50px;
 }
+
 .lists .item-inner span {
   font-size: 14px;
 }
@@ -38,6 +63,30 @@ background: #ffffff;
   font-size: 20px;
   color: #d2d2d2;
 }
-.lists .item-inner.active .icon-check_circle {
+.lists .check .item-inner .icon-check_circle {
   color: #8279e3;
+}
+
+/* .confirm */
+.selected-confirm {
+  height: 50px;
+  bottom: -2px;
+}
+.toolbar.selected-confirm {
+  border: none;
+}
+.toolbar:before,
+.toolbar:after {
+  display: none;
+}
+.selected-confirm .toolbar-inner {
+  padding: 0;
+}
+.selected-confirm .confirm {
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
+  background: #fa5a5a;
+  z-index: 9999;
 }

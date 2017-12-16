@@ -45,6 +45,7 @@ new Vue({
     /* Uncomment to enable Material theme: */
     // material: true,
     routes: Routes,
+    modalButtonOk: '确定'
   },
   // Register App Component
   components: {

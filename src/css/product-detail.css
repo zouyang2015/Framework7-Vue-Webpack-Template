@@ -1,3 +1,7 @@
+.pl15 {
+  padding-left: 15px;
+}
+
 /* detail-navi */
 .detail-navi.content-block {
   margin: 0;
@@ -68,13 +72,14 @@
 
 /* h3-title */
 .h3-title {
-  flex: 0 0 80px;
+  flex: 0 0 90px;
+  width: 90px;
   box-sizing: border-box;
   font-size: 16px;
   font-weight: normal;
   border-right: 1px solid #e6e6e6;
   text-align: right;
-  padding: 0 20px 0 0;
+  padding: 0 10px 0 0;
   margin: 0;
   line-height: 18px;
 }
@@ -86,7 +91,6 @@
   margin: 0;
   color: #2b2b2b;
   padding: 10px 0 10px 10px;
-  border-top: 1px solid #e6e6e6;
   position: relative;
 }
 .h4-title span {
@@ -146,6 +150,9 @@
   margin: 10px 0;
   overflow: hidden;
 }
+.form-warpper:last-of-type {
+  margin-bottom: 47px;
+}
 
 .form-warpper .content-block-inner {
   padding: 0;
@@ -155,13 +162,11 @@
   margin: 0;
 }
 
-.form-warpper .list-block .item-content {
-}
-
 .form-warpper .list-block .item-inner {
   justify-content: flex-start;
   min-height: 50px;
   position: relative;
+  font-size: 16px;
 }
 
 .form-warpper .list-block .sex .item-inner input {
@@ -218,8 +223,45 @@
   background: #c1c337;
   opacity: 0;
 }
+.form-warpper .list-block select {
+  font-size: 16px;
+  height: 35px;
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20viewBox%3D'0%200%2060%20120'%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%3E%3Cpath%20d%3D'm60%2061.5-38.25%2038.25-9.75-9.75%2029.25-28.5-29.25-28.5%209.75-9.75z'%20fill%3D'%23c7c7cc'%2F%3E%3C%2Fsvg%3E");
+  background-size: 10px 20px;
+  background-repeat: no-repeat;
+  background-position: 95% center;
+  background-position: calc(100% - 15px) center;
+}
+.form-warpper .list-block input[type=number] {
+  height: 35px;
+}
+.form-warpper .list-block input[type=number].pl15,
+.form-warpper .list-block select.pl15 {
+  padding-left: 15px;
+}
+.form-warpper .fee-sum {
+  text-align: center;
+}
+.form-warpper .fee-sum ul {
+  width: 100%;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+}
+.form-warpper .fee-sum ul li {
+  flex: 1;
+  font-size: 12px;
+  color: #666666;
+  border-left: 1px solid #e6e6e6;
+}
+.form-warpper .fee-sum ul li:first-child {
+  border: none;
+}
+.form-warpper .fee-sum ul li span {
+  color: #000;
+}
 
-/* .swiper-slide */
+  /* .swiper-slide */
 .scroll {
   margin-bottom: 10px;
 }
@@ -261,4 +303,66 @@
   background-size: 22px 22px;
   padding: 5px 0 5px 30px;
   line-height: 22px;
+}
+
+/* .bottom-fee-sum */
+.bottom-fee-sum {
+  height: 50px;
+  bottom: -2px;
+}
+.toolbar.bottom-fee-sum {
+  /*border: none;*/
+  border-top: 1px solid #e6e6e6;
+}
+.toolbar:before,
+.toolbar:after {
+  display: none;
+}
+.bottom-fee-sum .toolbar-inner {
+  padding: 0;
+}
+.bottom-fee-sum .bottom-box {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+  align-items: center;
+}
+.bottom-fee-sum .bottom-box .sum {
+  flex: 1;
+  font-size: 12px;
+  color: #716abf;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 0 5px 10px;
+}
+.bottom-fee-sum .bottom-box .sum p {
+  margin: 0;
+  flex: 1;
+  line-height: 20px;
+}
+.bottom-fee-sum .bottom-box .pagelink {
+  flex: 0 0 90px;
+  width: 90px;
+  font-size: 16px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 50px;
+  background: #ffa63c;
+}
+.bottom-fee-sum .bottom-box .prospectus {
+  flex: 0 0 100px;
+  width: 100px;
+  line-height: 50px;
+  font-size: 16px;
+  color: #ffffff;
+  background: #ff6969;
+  text-align: center;
+}
+.bottom-fee-sum .confirm {
+  width: 100%;
+  line-height: 50px;
+  text-align: center;
+  color: #ffffff;
+  background: #fa5a5a;
+  z-index: 9999;
 }

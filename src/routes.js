@@ -4,15 +4,19 @@ export default [
     component: require('./pages/product-detail.vue')
   },
   {
-    path: '/profit/',  // 保险利益
+    path: '/multiple/:type/',  //当保险利益、条款全文、投保规则是多条时
+    component: require('./pages/multiple.vue')
+  },
+  {
+    path: '/profit/:prodkey/:pageid/',  // 保险利益
     component: require('./pages/profit.vue')
   },
   {
-    path: '/clause/',  // 条款全文
+    path: '/clause/:prodkey/:pageid/',  // 条款全文
     component: require('./pages/clause.vue')
   },
   {
-    path: '/rule/',  // 投保规则
+    path: '/rule/:prodkey/:pageid/',  // 投保规则
     component: require('./pages/rule.vue')
   },
   {
@@ -22,17 +26,5 @@ export default [
   {
     path: '/add-additional/', //添加附加险
     component: require('./pages/add-additional.vue')
-  },
-  {
-    path: '/about/',
-    component: require('./pages/about.vue')
-  },
-  {
-    path: '/form/',
-    component: require('./pages/form.vue')
-  },
-  {
-    path: '/dynamic-route/blog/:blogId/post/:postId/',
-    component: require('./pages/dynamic-route.vue')
   }
 ]

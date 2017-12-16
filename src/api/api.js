@@ -72,29 +72,62 @@ export function getAdditionalRisk(option) {
 }
 
 // 添加主险(附加险)确认
-export function addRisk() {
+export function addRisk(option) {
   const url = URL
-
-  const option = {
-    age: '',
-    sex: '',
-    userid: 'US161202000000000164',
-    prodlist: [
-      // {prodkey: 'PR171019000000000005', pageid:'', option:'A', parentprodkey: ''},
-      {prodkey: 'PR171019000000000006', pageid:'', option:'A', parentprodkey: ''},
-      {prodkey: 'PR110530000000000004', pageid:'', option:'A', parentprodkey:'PR171019000000000005'},
-      {prodkey: 'PR110530000000000004', pageid:'', option:'A', parentprodkey:'PR171019000000000006'}
-    ],
-    allprodlist: [
-      {prodkey: 'PR171019000000000005', pageid:'1512890227581442487', parentprodkey:''},
-      // {prodkey: 'PR171019000000000006', pageid:'1512369990123872892', parentprodkey:''},
-      // {prodkey: 'PR110530000000000004', pageid:'1512369990123872892', parentprodkey:'PR171019000000000005'},
-      // {prodkey: 'PR110530000000000004', pageid:'1512369990123872892', parentprodkey:'PR171019000000000006'}
-    ]
-  }
 
   const data = {
     optioncode: 'PRDS-01-2new',
+    option: JSON.stringify(option),
+    platform: 'web',
+    secret: 'FxOFz9tPtjFMuOweERxpHw=='
+  }
+
+  return axios.post(url, qs.stringify(data))
+    .then((res) => {
+      return Promise.resolve(res.data)
+    })
+}
+
+// 算费参数变化prds-06new
+export function feeCalculation(option) {
+  const url = URL
+
+  const data = {
+    optioncode: 'prds-06new',
+    option: JSON.stringify(option),
+    platform: 'web',
+    secret: 'FxOFz9tPtjFMuOweERxpHw=='
+  }
+
+  return axios.post(url, qs.stringify(data))
+    .then((res) => {
+      return Promise.resolve(res.data)
+    })
+}
+
+// 保险利益PRDS-02
+export function benefit(option) {
+  const url = URL
+
+  const data = {
+    optioncode: 'PRDS-02',
+    option: JSON.stringify(option),
+    platform: 'web',
+    secret: 'FxOFz9tPtjFMuOweERxpHw=='
+  }
+
+  return axios.post(url, qs.stringify(data))
+    .then((res) => {
+      return Promise.resolve(res.data)
+    })
+}
+
+// 条款全文PRD-03
+export function download(option) {
+  const url = URL
+
+  const data = {
+    optioncode: 'PRD-03',
     option: JSON.stringify(option),
     platform: 'web',
     secret: 'FxOFz9tPtjFMuOweERxpHw=='
