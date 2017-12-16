@@ -20,6 +20,23 @@ export function getBaseInfo() {
     })
 }
 
+// 搜索、点击产品分类中标签搜索 sch-01
+export function getSearch(option) {
+  const url = URL
+
+  const data = {
+    optioncode: 'sch-01',
+    option: JSON.stringify(option),
+    platform: 'web',
+    secret: 'FxOFz9tPtjFMuOweERxpHw=='
+  }
+
+  return axios.post(url, qs.stringify(data))
+    .then((res) => {
+      return Promise.resolve(res.data)
+    })
+}
+
 // 获取产品详情
 export function getProductDetail(prodkey = '') {
   const url = URL

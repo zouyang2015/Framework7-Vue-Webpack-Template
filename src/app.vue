@@ -175,6 +175,7 @@
       window.sessionStorage.removeItem('detailToAdd')
       window.sessionStorage.removeItem('mainToDetail')
       window.sessionStorage.removeItem('additionalToDetail')
+      window.sessionStorage.removeItem('saveList')
 
 
       // 异步请求例子
