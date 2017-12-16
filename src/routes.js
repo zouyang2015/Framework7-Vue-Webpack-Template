@@ -4,7 +4,7 @@ export default [
     component: require('./pages/product-detail.vue')
   },
   {
-    path: '/multiple/:type/',  //当保险利益、条款全文、投保规则是多条时
+    path: '/multiple/:type/:title/',  //当保险利益、条款全文、投保规则是多条时
     component: require('./pages/multiple.vue')
   },
   {

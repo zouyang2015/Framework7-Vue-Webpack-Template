@@ -1,6 +1,6 @@
 <template>
   <f7-page class="multiple">
-    <f7-navbar title="保险利益" back-link=" " sliding></f7-navbar>
+    <f7-navbar :title="title" back-link=" " sliding></f7-navbar>
 
     <f7-list>
       <f7-list-item link="/profit/" class="item" v-for="(item, index) in sumAry" :key="index" @click="detail(item.prodkey, item.pageid)">
@@ -16,12 +16,14 @@
     data() {
       return {
         sumAry: [],
-        type: ''
+        type: '',
+        title: ''
       }
     },
     created() {
       this.sumAry = JSON.parse(sessionStorage.getItem('sumAry')) || ''
       this.type = this.$route.params.type
+      this.title = this.$route.params.title
     },
     methods: {
       detail(prodkey, pageid) {

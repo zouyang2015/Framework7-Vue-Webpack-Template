@@ -7,9 +7,9 @@
 
     <f7-block inner tabs class="detail-navi">
       <f7-buttons class="page-list">
-        <f7-button class="page-list-item" @click="profit"><span>保险利益</span></f7-button>
-        <f7-button class="page-list-item" @click="clause"><span>条款全文</span></f7-button>
-        <f7-button class="page-list-item" @click="rule"><span>投保规则</span></f7-button>
+        <f7-button class="page-list-item" @click="profit('保险利益')"><span>保险利益</span></f7-button>
+        <f7-button class="page-list-item" @click="clause('条款全文')"><span>条款全文</span></f7-button>
+        <f7-button class="page-list-item" @click="rule('投保规则')"><span>投保规则</span></f7-button>
       </f7-buttons>
     </f7-block>
 
@@ -506,27 +506,27 @@
         })
       },
       // 保险利益
-      profit() {
+      profit(title) {
         if(this.sumAry.length > 1) {
-          this.$f7.mainView.router.load({url: '/multiple/profit/'})
+          this.$f7.mainView.router.load({url: `/multiple/profit/${title}/`})
         } else {
           this.$f7.mainView.router.load({url: `/profit/${this.sumAry[0].prodkey}/${this.sumAry[0].pageid}/`})
         }
         window.sessionStorage.setItem('sumAry', JSON.stringify(this.sumAry))
       },
       // 条款全文
-      clause() {
+      clause(title) {
         if(this.sumAry.length > 1) {
-          this.$f7.mainView.router.load({url: '/multiple/clause/'})
+          this.$f7.mainView.router.load({url: `/multiple/clause/${title}/`})
         } else {
           this.$f7.mainView.router.load({url: `/clause/${this.sumAry[0].prodkey}/${this.sumAry[0].pageid}/`})
         }
         window.sessionStorage.setItem('sumAry', JSON.stringify(this.sumAry))
       },
       // 投保规则
-      rule() {
+      rule(title) {
         if(this.sumAry.length > 1) {
-          this.$f7.mainView.router.load({url: '/multiple/rule/'})
+          this.$f7.mainView.router.load({url: `/multiple/rule/${title}/`})
         } else {
           this.$f7.mainView.router.load({url: `/rule/${this.sumAry[0].prodkey}/${this.sumAry[0].pageid}/`})
         }

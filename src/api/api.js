@@ -138,3 +138,20 @@ export function download(option) {
       return Promise.resolve(res.data)
     })
 }
+
+// 10.投保规则PRD-04
+export function getRule(option) {
+  const url = URL
+
+  const data = {
+    optioncode: 'PRD-04',
+    option: JSON.stringify(option),
+    platform: 'web',
+    secret: 'FxOFz9tPtjFMuOweERxpHw=='
+  }
+
+  return axios.post(url, qs.stringify(data))
+    .then((res) => {
+      return Promise.resolve(res.data)
+    })
+}
