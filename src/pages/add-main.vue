@@ -17,11 +17,22 @@
 
     <div class="choose-pro">
       <f7-accordion-item>
-        <f7-accordion-toggle><span>已经选择产品{{computedList.length}}个</span></f7-accordion-toggle>
+        <f7-accordion-toggle><span>已经选择产品{{computedList.length + computedSaveList.length + computedMainToDetail.length}}个</span></f7-accordion-toggle>
         <f7-accordion-content>
           <f7-list class="lists">
+
+            <f7-list-item v-for="(item, index) in computedMainToDetail" :key="index" @click="deleteProduct(item.prodkey,'main')">
+              <span>{{item.prodname}}</span>
+              <i class="icon-check_circle"></i>
+            </f7-list-item>
+
+            <f7-list-item v-for="(item, index) in computedSaveList" :key="index" @click="deleteProduct(item.prodkey,'save')">
+              <span>{{item.prodname}}</span>
+              <i class="icon-check_circle"></i>
+            </f7-list-item>
+
             <f7-list-item v-if="computedList.length" v-for="(item, index) in computedList" :key="index"
-                          @click="removedProduct(item)">
+                          @click="removedProduct(item, item.prodkey)">
               <span>{{item.prodname}}</span>
               <i class="icon-check_circle"></i>
             </f7-list-item>
@@ -31,7 +42,7 @@
     </div>
 
     <f7-list class="lists mt">
-      <f7-list-item @click="selectedProduct(item)" v-for="(item, index) in productList" :key="index"
+      <f7-list-item @click="selectedProduct(item, item.prodkey)" v-for="(item, index) in productList" :key="index"
                     :class="{'check':item.checked}">
         <span>{{item.prodname}}</span>
         <i class="icon-check_circle"></i>
@@ -70,31 +81,64 @@
       this.detailToAdd = JSON.parse(sessionStorage.getItem('detailToAdd')) || {}
       this.mainToDetail = JSON.parse(sessionStorage.getItem('mainToDetail')) || []
       this.additionalToDetail = JSON.parse(sessionStorage.getItem('additionalToDetail')) || []
-      this.saveList = this.mainToDetail || JSON.parse(sessionStorage.getItem('saveList')) || []
-      this.saveList.forEach((item) => {
-        this.$set(item, 'checked', true)
-      })
+      this.saveList = JSON.parse(sessionStorage.getItem('saveList')) || []
+
+
+
       // 添加主险
       this.getMainRisk()
     },
     computed: {
-      // 计算被选中的产品项
-      computedList() {
-        // 去掉saveList有的selectedList项
+      computedMainToDetail() {
         let curAry = []
-        this.selectedList.forEach((item) => {
+        // 去掉在computedList有相同prodkey号的
+        this.mainToDetail.forEach((item) => {
           let flg = false
-          flg = this.saveList.some((detail) => {
-            return detail.prodkey === item.prodkey
+          flg = this.computedList.some((detail) => {
+            return item.prodkey === detail.prodkey
           })
-          if (!flg) {
+          if(!flg) {
             curAry.push(item)
           }
         })
-        return [...this.saveList, ...curAry]
+        return curAry
+      },
+      computedSaveList() {
+        let curAry = []
+        // 去掉在computedList有相同prodkey号的
+        this.saveList.forEach((item) => {
+          let flg = false
+          flg = this.computedList.some((detail) => {
+            return item.prodkey === detail.prodkey
+          })
+          if(!flg) {
+            curAry.push(item)
+          }
+        })
+        return curAry
+      },
+      // 计算被选中的产品项
+      computedList() {
+        return this.productList.filter((item) => {
+          return item.checked === true
+        })
       }
     },
     methods: {
+      normalizeSaveList() {
+        let curAry = []
+        // 去掉在computedList有相同prodkey号的
+        this.saveList.forEach((item) => {
+          let flg = false
+          flg = this.computedList.some((detail) => {
+            return item.prodkey === detail.prodkey
+          })
+          if(!flg) {
+            curAry.push(item)
+          }
+        })
+        this.saveList = curAry
+      },
       // 添加主险
       getMainRisk(compkey) {
         getMainRisk(compkey).then((res) => {
@@ -128,21 +172,45 @@
         })
       },
       // 点击下面列表添加、移除产品
-      selectedProduct(product) {
+      selectedProduct(product, prodkey) {
         if (typeof product.checked === 'undefined') {
           this.$set(product, 'checked', true)
         } else {
           product.checked = !product.checked
         }
       },
+      // 删除的产品
+      deleteProduct(prodkey, type) {
+        if(type === 'save') {
+          console.log('save')
+          this.saveList = this.saveList.filter((item) => {
+            console.log(prodkey, item.prodkey)
+            return item.prodkey !== prodkey
+          })
+        }else if(type === 'main') {
+          console.log('main')
+          this.mainToDetail = this.mainToDetail.filter((item) => {
+            return item.prodkey !== prodkey
+          })
+        }
+
+      },
       // 点击已选中产品移除
-      removedProduct(product) {
+      removedProduct(product, prodkey) {
+        this.saveList = this.saveList.filter((item) => {
+          return item.prodkey !== prodkey
+        })
+        this.mainToDetail = this.mainToDetail.filter((item) => {
+          return item.prodkey !== prodkey
+        })
         product.checked = false
       },
       // 点击搜索
       onDisable: function () {
+        console.log(this.selectedList)
         this.saveList = this.selectedList
-        this.selectedList = []
+        sessionStorage.setItem('saveList', JSON.stringify(this.saveList))
+//        this.selectedList = []
         let option = {
           classtype: 'M',
           keyword: this.searchWord
@@ -150,7 +218,7 @@
         getSearch(option).then((res) => {
           if (res.status === '0') {
             this.productList = res.prods
-            this.selectedList = this.saveList.concat(this.selectedList)
+//            this.selectedList = this.saveList.concat(this.selectedList)
           } else {
             if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
               this.$f7.alert('出错了', null)
@@ -169,7 +237,7 @@
         let option = Object.assign({}, this.detailToAdd, {
           prodlist: []
         })
-        this.computedList.forEach((item) => {
+        this.computedSaveList.forEach((item) => {
           let obj = {}
           obj.prodkey = item.prodkey
           obj.pageid = item.pageid || ''
@@ -184,7 +252,7 @@
             obj.pageid = item.pageid || ''
             obj.parentprodkey = item.parentprodkey || ''
             if (item.checked === true) {
-//              obj.option = 'A'
+              obj.option = 'A'
             } else {
               obj.option = 'D'
               // 记录被删掉的主险，将其附加险也选中一起删掉（处理的是session)
@@ -196,7 +264,6 @@
             option.prodlist.push(obj)
           }
         })
-        console.log(option)
 
         if (option.prodlist.length) {
           this.$f7.showIndicator()
@@ -211,7 +278,6 @@
           .then((res) => {
             if (res.status === '0') {
               sessionStorage.setItem('mainToDetail', JSON.stringify(res.prodlist))
-              sessionStorage.setItem('saveList', JSON.stringify(this.saveList))
               this.$f7.mainView.router.back()
             } else {
               if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
