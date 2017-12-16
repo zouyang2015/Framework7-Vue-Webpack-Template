@@ -10,7 +10,8 @@
         <!-- Item 1 -->
         <f7-accordion-item v-for="(lists, index) in productList" :key="index">
           <f7-accordion-toggle><span>{{lists.prodname}}</span></f7-accordion-toggle>
-          <f7-accordion-content v-if="lists.sprodlist.length" v-for="(item, ind) in lists.sprodlist" :key="ind" :class="{'check':item.checked}">
+          <f7-accordion-content v-if="lists.sprodlist.length" v-for="(item, ind) in lists.sprodlist" :key="ind"
+                                :class="{'check':item.checked}">
             <div class="text-wrapper" @click="selectedProduct(item)">
               <div class="text">
                 <p class="title">{{item.prodname}}</p>
@@ -28,7 +29,8 @@
 
     <f7-list v-if="productList && productList.length === 1" class="lists pt">
       <template v-for="(lists, index) in productList">
-        <f7-list-item v-if="lists.sprodlist && lists.sprodlist.length" @click="selectedProduct(item)" v-for="(item, index) in lists.sprodlist" :key="index" :class="{'check':item.checked}">
+        <f7-list-item v-if="lists.sprodlist && lists.sprodlist.length" @click="selectedProduct(item)"
+                      v-for="(item, index) in lists.sprodlist" :key="index" :class="{'check':item.checked}">
           <div class="text">
             <p class="title">{{item.prodname}}</p>
             <p class="desc">{{item.prodtag}}</p>
@@ -89,11 +91,9 @@
           }
         })
         getAdditionalRisk(param).then((res) => {
-          if (res.status === '0') {
-            this.productList = res.prodlist
-            this.$f7.hideIndicator()
-            this.echoedData()
-          }
+          this.productList = res.prodlist
+          this.echoedData()
+          this.$f7.hideIndicator()
         })
       },
       // 回显处理
@@ -137,10 +137,10 @@
             }
           })
         })
-        if(option.prodlist.length) {
+        if (option.prodlist.length) {
           this.$f7.showIndicator()
           this.addRisk(option)
-        }else {
+        } else {
           this.$f7.mainView.router.back()
         }
       },
@@ -148,11 +148,9 @@
       addRisk(option) {
         addRisk(option)
           .then((res) => {
-            if (res.status === '0') {
-              this.$f7.hideIndicator()
-              sessionStorage.setItem('additionalToDetail', JSON.stringify(res.prodlist))
-              this.$f7.mainView.router.back()
-            }
+            this.$f7.hideIndicator()
+            sessionStorage.setItem('additionalToDetail', JSON.stringify(res.prodlist))
+            this.$f7.mainView.router.back()
           })
       }
     }

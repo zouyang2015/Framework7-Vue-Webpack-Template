@@ -8,7 +8,8 @@
     <f7-block>
       <f7-accordion>
         <!-- Item 1 -->
-        <f7-accordion-item class="item-content" v-for="(item,index) in benefitAry" v-if="benefitAry.length" :key="index">
+        <f7-accordion-item class="item-content" v-for="(item,index) in benefitAry" v-if="benefitAry.length"
+                           :key="index">
           <f7-accordion-toggle><span class="name">{{item.name}}</span><span class="detail">{{item.detail}}</span>
           </f7-accordion-toggle>
           <f7-accordion-content>
@@ -33,6 +34,7 @@
       }
     },
     created() {
+      this.$f7.showIndicator()
       this.prodkey = this.$route.params.prodkey
       this.pageid = this.$route.params.pageid
 
@@ -47,9 +49,8 @@
           pageid: this.pageid
         }
         benefit(option).then((res) => {
-          if (res.status === '0') {
-            this.benefitAry = res.prodadv
-          }
+          this.benefitAry = res.prodadv
+          this.$f7.hideIndicator()
         })
       },
       // 处理成html

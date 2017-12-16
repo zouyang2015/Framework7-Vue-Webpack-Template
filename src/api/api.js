@@ -16,7 +16,16 @@ export function getBaseInfo() {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -33,7 +42,16 @@ export function getSearch(option) {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -50,7 +68,16 @@ export function getProductDetail(prodkey = '') {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -67,7 +94,16 @@ export function getMainRisk(pk_comp = '') {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -84,7 +120,16 @@ export function getAdditionalRisk(option) {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -101,7 +146,16 @@ export function addRisk(option) {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -118,7 +172,16 @@ export function feeCalculation(option) {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -135,7 +198,16 @@ export function benefit(option) {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -152,7 +224,16 @@ export function download(option) {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }
 
@@ -169,6 +250,15 @@ export function getRule(option) {
 
   return axios.post(url, qs.stringify(data))
     .then((res) => {
-      return Promise.resolve(res.data)
+      if (res.status === '0') {
+        return Promise.resolve(res.data)
+      } else {
+        if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+          window.f7.alert('出错了', null)
+        } else {
+          window.f7.alert(res.msg, null)
+        }
+        window.f7.hideIndicator()
+      }
     })
 }

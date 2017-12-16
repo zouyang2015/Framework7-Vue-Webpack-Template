@@ -20,7 +20,8 @@
         <f7-accordion-toggle><span>已经选择产品{{computedList.length}}个</span></f7-accordion-toggle>
         <f7-accordion-content>
           <f7-list class="lists">
-            <f7-list-item v-if="computedList.length" v-for="(item, index) in computedList" :key="index" @click="removedProduct(item)">
+            <f7-list-item v-if="computedList.length" v-for="(item, index) in computedList" :key="index"
+                          @click="removedProduct(item)">
               <span>{{item.prodname}}</span>
               <i class="icon-check_circle"></i>
             </f7-list-item>
@@ -84,7 +85,7 @@
           flg = this.saveList.some((detail) => {
             return detail.prodkey === item.prodkey
           })
-          if(!flg) {
+          if (!flg) {
             curAry.push(item)
           }
         })
@@ -95,11 +96,9 @@
       // 添加主险
       getMainRisk(compkey) {
         getMainRisk(compkey).then((res) => {
-          if (res.status === '0') {
-            this.productList = this.normalizeProdlist(res.prodlist)
-            this.$f7.hideIndicator()
-            this.echoedData()
-          }
+          this.productList = this.normalizeProdlist(res.prodlist)
+          this.$f7.hideIndicator()
+          this.echoedData()
         })
       },
       // 过滤掉当前主险
@@ -139,10 +138,8 @@
           keyword: this.searchWord
         }
         getSearch(option).then((res) => {
-          if (res.status === '0') {
-            this.productList = res.prods
-            this.selectedList = this.saveList.concat(this.selectedList)
-          }
+          this.productList = res.prods
+          this.selectedList = this.saveList.concat(this.selectedList)
         })
       },
       onEnable() {
@@ -184,12 +181,10 @@
       addRisk(option) {
         addRisk(option)
           .then((res) => {
-            if (res.status === '0') {
-              this.$f7.hideIndicator()
-              sessionStorage.setItem('mainToDetail', JSON.stringify(res.prodlist))
-              sessionStorage.setItem('saveList', JSON.stringify(this.saveList))
-              this.$f7.mainView.router.back()
-            }
+            this.$f7.hideIndicator()
+            sessionStorage.setItem('mainToDetail', JSON.stringify(res.prodlist))
+            sessionStorage.setItem('saveList', JSON.stringify(this.saveList))
+            this.$f7.mainView.router.back()
           })
       }
     },

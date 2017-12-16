@@ -40,6 +40,7 @@
       }
     },
     created() {
+      this.$f7.showIndicator()
       this.prodkey = this.$route.params.prodkey
       this.pageid = this.$route.params.pageid
 
@@ -51,10 +52,9 @@
           prodkey: this.prodkey
         }
         getRule(option).then((res) => {
-          if(res.status === '0') {
-            this.prodrule = res.prodrule
-            this.comprule = res.comprule
-          }
+          this.prodrule = res.prodrule
+          this.comprule = res.comprule
+          this.$f7.hideIndicator()
         })
       },
       // 处理成html
@@ -74,6 +74,7 @@
     display: flex;
     font-size: 12px;
   }
+
   .rule .buttons-row.rule-tab .button {
     border: none;
     color: #999999;
@@ -106,9 +107,11 @@
     background-color: #5b52b5;
     display: block;
   }
+
   .rule .buttons-row.rule-tab .button.active-state {
     background: no-repeat;
   }
+
   .rule .tab-content-wrapper {
     margin-top: 44px;
     font-size: 14px;

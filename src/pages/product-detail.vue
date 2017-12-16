@@ -366,8 +366,10 @@
       // 日期转周岁
       changeBirthday(detail) {
         this.temporaryStorage.saveAge = jsGetAge(this.birthday)
-        // 这里可以判断个浏览器再作兼容操作-暂时保存
-        // detail.paramvalue = this.temporaryStorage.saveAge
+        if(this.temporaryStorage.saveAge < 0) {
+          this.$f7.alert('选择日期不可以大于当前日期', null)
+          this.temporaryStorage.saveAge = 0
+        }
       },
       // 日期转周岁-点击完成后赋值
       blurBirthday(detail) {

@@ -20,6 +20,7 @@
       }
     },
     created() {
+      this.$f7.showIndicator()
       this.prodkey = this.$route.params.prodkey
 
       this.download()
@@ -30,15 +31,8 @@
           prodkey: this.prodkey
         }
         download(option).then((res) => {
-          if(res.status === '0') {
-            this.pdfurl = res.pdfurl
-          }else {
-            if(typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
-              this.$f7.alert('出错了', null)
-            } else {
-              this.$f7.alert(res.msg, null)
-            }
-          }
+          this.pdfurl = res.pdfurl
+          this.$f7.hideIndicator()
         })
       }
     }
