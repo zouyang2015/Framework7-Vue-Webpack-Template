@@ -90,3 +90,13 @@
   background: #fa5a5a;
   z-index: 9999;
 }
+
+/* .add-main */
+.no-prod-wrapper {
+  background: #ffffff;
+  height: 600px;
+  margin-top: 10px;
+}
+.add-main .no-prod {
+
+}

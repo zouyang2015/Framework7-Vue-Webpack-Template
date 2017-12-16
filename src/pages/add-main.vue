@@ -1,5 +1,5 @@
 <template>
-  <f7-page>
+  <f7-page class="add-main">
     <f7-navbar>
       <f7-nav-left back-link=" " sliding></f7-nav-left>
       <f7-nav-center sliding>添加主险</f7-nav-center>
@@ -41,13 +41,23 @@
       </f7-accordion-item>
     </div>
 
-    <f7-list class="lists mt">
+    <f7-list v-if="productList.length" class="lists mt">
       <f7-list-item @click="selectedProduct(item, item.prodkey)" v-for="(item, index) in productList" :key="index"
                     :class="{'check':item.checked}">
         <span>{{item.prodname}}</span>
         <i class="icon-check_circle"></i>
       </f7-list-item>
     </f7-list>
+
+    <div v-else class="no-prod-wrapper">
+      <div class="no-prod">
+        <p>
+          <img src="../image/none.jpg" width="95" height="95" alt="">
+          <span>没有符合条件的主险</span>
+        </p>
+      </div>
+    </div>
+
 
     <f7-toolbar bottom class="selected-confirm">
       <div class="confirm" @click="confirm">确定</div>
