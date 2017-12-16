@@ -19,8 +19,8 @@
         <!-- 性别 -->
         <f7-list-item class="sex">
           <h3 class="h3-title">性别</h3>
-          <template v-for="(item, index) in sexAry">
-            <template v-for="(detail, ind) in sumAry[0].param">
+          <template v-if="sexAry && sexAry.length" v-for="(item, index) in sexAry">
+            <template v-if="sumAry && sumAry.length" v-for="(detail, ind) in sumAry[0].param">
               <template v-if="detail.paramcode === 's'">
                 <input v-model="detail.paramvalue" :value="item" :id="item" type="radio" class="sex-button" :class="{'active': item === detail.paramvalue}"><label
                   :for="item">{{item === '1' ? '男' : '女'}}</label>
@@ -50,7 +50,7 @@
     <div class="form-warpper">
       <template v-if="sumAry && sumAry.length" v-for="(item, index) in sumAry">
         <h4 class="h4-title">
-          <span :class="{'main-risk': item.classtype === 'M'}">{{item.prodname}}</span>
+          <span :class="{'main-risk': item.classtype === 'M' || item.classtype === 'A'}">{{item.prodname}}</span>
           <i class="ico-close" v-if="typeof item.ishot === 'undefined'" @click="removeProduct(item, index)"></i>
         </h4>
 
@@ -61,23 +61,29 @@
         <f7-list>
           <template v-for="(detail, ind) in item.param">
             <f7-list-item class="other" v-if="detail.paramcode !== 's' && detail.paramcode !== 'a'">
-              <h3 class="h3-title">{{detail.paramname}}</h3>
-              <!-- select -->
-              <template v-if="detail.paramtype === '1'">
-                <template v-if="stringToAry(detail.paramrange).length > 1">
-                  <select class="select pl15" v-model="detail.paramvalue" @change="feeCalculation(item, detail,'select')">
-                    <option :value="val" v-for="val in stringToAry(detail.paramrange)">
-                      {{val}}
-                    </option>
-                  </select>
+              <div class="inner">
+                <h3 class="h3-title">{{detail.paramname}}</h3>
+                <!-- select -->
+                <template v-if="detail.paramtype === '1'">
+                  <template v-if="stringToAry(detail.paramrange).length > 1">
+                    <select class="select pl15" v-model="detail.paramvalue" @change="feeCalculation(item, detail,'select')">
+                      <option :value="val" v-for="val in stringToAry(detail.paramrange)">
+                        {{val}}
+                      </option>
+                    </select>
+                  </template>
+                  <template v-else>
+                    <span class="pl15">{{detail.paramvalue}}</span>
+                  </template>
                 </template>
-                <template v-else>
-                  <span class="pl15">{{detail.paramvalue}}</span>
+                <!-- input -->
+                <template v-if="detail.paramtype === '0'">
+                  <input type="number" class="text pl15" v-model="detail.paramvalue" value="" @click="inputDialog(detail, item)" :placeholder="detail.paramrange">
                 </template>
-              </template>
-              <!-- input -->
-              <template v-if="detail.paramtype === '0'">
-                <input type="number" class="text pl15" v-model="detail.paramvalue" value="" @click="inputDialog(detail, item)" :placeholder="detail.paramrange">
+              </div>
+
+              <template>
+                <div class="parammsgs" v-if="detail.parammsg">{{detail.parammsg}}</div>
               </template>
             </f7-list-item>
           </template>
@@ -87,6 +93,10 @@
               <li>首期保费¥ <span v-if="Number(item.fee)">{{item.fee}}</span><span v-else>--</span></li>
               <li v-if="!feeSum(item.param)">产品保额¥ <span v-if="Number(item.cover)">{{item.cover}}</span><span v-else>--</span></li>
             </ul>
+          </f7-list-item>
+
+          <f7-list-item v-if="item.ffmsg" class="ffmsg">
+            <span>{{item.ffmsg}}</span>
           </f7-list-item>
         </f7-list>
 
@@ -105,7 +115,7 @@
           <p>首期保费</p>
           <p>¥ <span v-if="total !=='0.00'">{{total}}</span><span v-else>--</span></p>
         </div>
-        <div class="pagelink">产品特色</div>
+        <f7-button v-if="productDetailAry.proddetailurl" :href="productDetailAry.proddetailurl" class="pagelink">产品特色</f7-button>
         <div class="prospectus">制作计划书</div>
       </div>
     </f7-toolbar>
@@ -272,7 +282,7 @@
             // 去掉主险中年龄的数值
             // 增加cover保额、fee保费
             this.productList.forEach((item) => {
-              if(item.classtype === 'M') {
+              if(item.classtype === 'M' || item.classtype === 'A') {
                 item.param.forEach((detail) => {
                   if(detail.paramcode === 'a') {
                     detail.paramvalue = ''
@@ -300,7 +310,7 @@
         this.mainRisk = []
         this.additionalRisk = []
         this.productList.forEach((item) => {
-          if (item.classtype === 'M') {
+          if (item.classtype === 'M' || item.classtype === 'A') {
             this.mainRisk.push(item)
           } else {
             this.additionalRisk.push(item)
