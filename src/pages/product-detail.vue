@@ -282,12 +282,17 @@
               this.$set(item, 'cover', '0.00')
               this.$set(item, 'fee', '0.00')
             })
-
             this.sumAry = this.productList
             window.sessionStorage.setItem('productDetail', JSON.stringify(res))
             this.normalizeDetailAry()
-            this.$f7.hideIndicator()
+          } else {
+            if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+              this.$f7.alert('出错了', null)
+            } else {
+              this.$f7.alert(res.msg, null)
+            }
           }
+          this.$f7.hideIndicator()
         })
       },
       // 对获取的产品详情进行处理-分别处理主险、附加险
@@ -492,7 +497,14 @@
             this.feeAry = res.changelist
             // 处理与sumAry的合并
             this.concatSumAry()
+          } else {
+            if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+              this.$f7.alert('出错了', null)
+            } else {
+              this.$f7.alert(res.msg, null)
+            }
           }
+          this.$f7.hideIndicator()
         })
       },
       // 处理与sumAry的合并

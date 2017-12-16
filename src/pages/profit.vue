@@ -49,7 +49,15 @@
           pageid: this.pageid
         }
         benefit(option).then((res) => {
-          this.benefitAry = res.prodadv
+          if(res.status === '0') {
+            this.benefitAry = res.prodadv
+          } else {
+            if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+              this.$f7.alert('出错了', null)
+            } else {
+              this.$f7.alert(res.msg, null)
+            }
+          }
           this.$f7.hideIndicator()
         })
       },

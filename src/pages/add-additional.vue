@@ -91,8 +91,16 @@
           }
         })
         getAdditionalRisk(param).then((res) => {
-          this.productList = res.prodlist
-          this.echoedData()
+          if (res.status === '0') {
+            this.productList = res.prodlist
+            this.echoedData()
+          } else {
+            if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+              this.$f7.alert('出错了', null)
+            } else {
+              this.$f7.alert(res.msg, null)
+            }
+          }
           this.$f7.hideIndicator()
         })
       },
@@ -148,9 +156,17 @@
       addRisk(option) {
         addRisk(option)
           .then((res) => {
+            if (res.status === '0') {
+              sessionStorage.setItem('additionalToDetail', JSON.stringify(res.prodlist))
+              this.$f7.mainView.router.back()
+            } else {
+              if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+                this.$f7.alert('出错了', null)
+              } else {
+                this.$f7.alert(res.msg, null)
+              }
+            }
             this.$f7.hideIndicator()
-            sessionStorage.setItem('additionalToDetail', JSON.stringify(res.prodlist))
-            this.$f7.mainView.router.back()
           })
       }
     }

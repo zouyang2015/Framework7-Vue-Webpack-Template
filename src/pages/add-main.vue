@@ -96,9 +96,17 @@
       // 添加主险
       getMainRisk(compkey) {
         getMainRisk(compkey).then((res) => {
-          this.productList = this.normalizeProdlist(res.prodlist)
+          if (res.status === '0') {
+            this.productList = this.normalizeProdlist(res.prodlist)
+            this.echoedData()
+          } else {
+            if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+              this.$f7.alert('出错了', null)
+            } else {
+              this.$f7.alert(res.msg, null)
+            }
+          }
           this.$f7.hideIndicator()
-          this.echoedData()
         })
       },
       // 过滤掉当前主险
@@ -138,8 +146,17 @@
           keyword: this.searchWord
         }
         getSearch(option).then((res) => {
-          this.productList = res.prods
-          this.selectedList = this.saveList.concat(this.selectedList)
+          if (res.status === '0') {
+            this.productList = res.prods
+            this.selectedList = this.saveList.concat(this.selectedList)
+          } else {
+            if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+              this.$f7.alert('出错了', null)
+            } else {
+              this.$f7.alert(res.msg, null)
+            }
+          }
+          this.$f7.hideIndicator()
         })
       },
       onEnable() {
@@ -181,10 +198,18 @@
       addRisk(option) {
         addRisk(option)
           .then((res) => {
+            if (res.status === '0') {
+              sessionStorage.setItem('mainToDetail', JSON.stringify(res.prodlist))
+              sessionStorage.setItem('saveList', JSON.stringify(this.saveList))
+              this.$f7.mainView.router.back()
+            } else {
+              if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+                this.$f7.alert('出错了', null)
+              } else {
+                this.$f7.alert(res.msg, null)
+              }
+            }
             this.$f7.hideIndicator()
-            sessionStorage.setItem('mainToDetail', JSON.stringify(res.prodlist))
-            sessionStorage.setItem('saveList', JSON.stringify(this.saveList))
-            this.$f7.mainView.router.back()
           })
       }
     },

@@ -52,8 +52,16 @@
           prodkey: this.prodkey
         }
         getRule(option).then((res) => {
-          this.prodrule = res.prodrule
-          this.comprule = res.comprule
+          if(res.status === '0') {
+            this.prodrule = res.prodrule
+            this.comprule = res.comprule
+          } else {
+            if (typeof res.msg === 'undefined' || res.msg === 'null' || res.msg === '') {
+              this.$f7.alert('出错了', null)
+            } else {
+              this.$f7.alert(res.msg, null)
+            }
+          }
           this.$f7.hideIndicator()
         })
       },
