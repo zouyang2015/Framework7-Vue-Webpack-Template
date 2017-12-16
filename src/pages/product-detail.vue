@@ -489,7 +489,7 @@
         } else {
           // 筛选出所有需要的主附险
           let ary = this.sumAry.filter((list) => {
-            return item.classtype === 'M' ? list.prodkey === item.prodkey || list.parentprodkey === item.prodkey : list.prodkey === item.parentprodkey || list.parentprodkey === item.parentprodkey
+            return (item.classtype === 'M' || item.classtype === 'A') ? list.prodkey === item.prodkey || list.parentprodkey === item.prodkey : list.prodkey === item.parentprodkey || list.parentprodkey === item.parentprodkey
           })
           ary.forEach((aryItem) => {
             let obj = {
