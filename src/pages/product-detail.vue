@@ -20,9 +20,9 @@
         <f7-list-item class="sex">
           <h3 class="h3-title">性别</h3>
           <template v-for="(item, index) in sexAry">
-            <template v-for="detail in sumAry[0].param">
+            <template v-for="(detail, ind) in sumAry[0].param">
               <template v-if="detail.paramcode === 's'">
-                <input v-model="detail.paramvalue" :value="item" :id="item" type="radio"><label
+                <input v-model="detail.paramvalue" :value="item" :id="item" type="radio" class="sex-button" :class="{'active': item === detail.paramvalue}"><label
                   :for="item">{{item === '1' ? '男' : '女'}}</label>
               </template>
             </template>
@@ -51,7 +51,7 @@
       <template v-if="sumAry && sumAry.length" v-for="(item, index) in sumAry">
         <h4 class="h4-title">
           <span :class="{'main-risk': item.classtype === 'M'}">{{item.prodname}}</span>
-          <i class="ico-close" v-if="typeof item.ishot === 'undefined'" @click="removeProduct(item.prodkey, index)"></i>
+          <i class="ico-close" v-if="typeof item.ishot === 'undefined'" @click="removeProduct(item, index)"></i>
         </h4>
 
         <f7-swiper class="scroll" :params="{speed:500, slidesPerView: 'auto', spaceBetween: 10}">
@@ -547,13 +547,20 @@
         window.sessionStorage.setItem('sumAry', JSON.stringify(this.sumAry))
       },
       // 删除产品
-      removeProduct(prodkey,index) {
+      removeProduct(prod, index) {
         this.sumAry.splice(index, 1)
-        this.mainToDetail = this.mainToDetail.filter((item) => {
-          return item.prodkey !== prodkey
-        })
+        if(prod.classtype === 'M') {
+          this.mainToDetail = this.mainToDetail.filter((item) => {
+            return item.prodkey !== prod.prodkey
+          })
+          window.sessionStorage.setItem('mainToDetail', JSON.stringify(this.mainToDetail))
+        } else {
+          this.additionalToDetail = this.mainToDetail.filter((item) => {
+            return item.prodkey !== prod.prodkey
+          })
+          window.sessionStorage.setItem('additionalToDetail', JSON.stringify(this.additionalToDetail))
+        }
         window.sessionStorage.setItem('sumAry', JSON.stringify(this.sumAry))
-        window.sessionStorage.setItem('mainToDetail', JSON.stringify(this.mainToDetail))
       }
     },
     watch: {

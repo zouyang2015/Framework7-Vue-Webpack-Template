@@ -192,13 +192,11 @@
       // 删除的产品
       deleteProduct(prodkey, type) {
         if(type === 'save') {
-          console.log('save')
           this.saveList = this.saveList.filter((item) => {
             console.log(prodkey, item.prodkey)
             return item.prodkey !== prodkey
           })
         }else if(type === 'main') {
-          console.log('main')
           this.mainToDetail = this.mainToDetail.filter((item) => {
             return item.prodkey !== prodkey
           })
@@ -217,7 +215,6 @@
       },
       // 点击搜索
       onDisable: function () {
-        console.log(this.selectedList)
         this.saveList = this.selectedList
         sessionStorage.setItem('saveList', JSON.stringify(this.saveList))
 //        this.selectedList = []
@@ -246,6 +243,14 @@
       confirm() {
         let option = Object.assign({}, this.detailToAdd, {
           prodlist: []
+        })
+        this.computedMainToDetail.forEach((item) => {
+          let obj = {}
+          obj.prodkey = item.prodkey
+          obj.pageid = item.pageid || ''
+          obj.parentprodkey = item.parentprodkey || ''
+          obj.option = 'A'
+          option.prodlist.push(obj)
         })
         this.computedSaveList.forEach((item) => {
           let obj = {}
